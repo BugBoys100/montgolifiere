@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Montgolfière — Simulation Physique</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="canvas3d"></canvas>
+      <div id="hud" class="hud">
+        <header class="hud__title">Montgolfière</header>
+
+        <section class="hud__panel hud__thermo">
+          <h2>Air interne</h2>
+          <div class="thermo-wrap">
+            <div class="thermo-scale">
+              <span class="thermo-label thermo-label--top">120°C</span>
+              <div class="thermo-bar">
+                <div id="thermo-fill" class="thermo-fill"></div>
+                <div id="thermo-equilibrium" class="thermo-equilibrium" title="Température d'équilibre"></div>
+                <div id="thermo-consigne" class="thermo-consigne" title="Consigne IA (T_cible)"></div>
+              </div>
+              <span class="thermo-label thermo-label--bottom">15°C</span>
+            </div>
+            <div class="thermo-readout">
+              <span id="t-int-display">—</span>
+              <span class="muted">T<sub>éq</sub> <span id="t-eq-display">—</span></span>
+              <span class="muted">T<sub>cible IA</sub> <span id="t-consigne-display">—</span></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="hud__panel hud__metrics">
+          <div class="metric">
+            <span class="metric__label">Altitude</span>
+            <span id="altitude" class="metric__value">0.0 m</span>
+          </div>
+          <div class="metric">
+            <span class="metric__label">Vitesse v<sub>z</sub></span>
+            <span id="velocity" class="metric__value metric__value--neutral">0.00 m/s</span>
+          </div>
+          <div class="metric">
+            <span class="metric__label">Accélération a<sub>z</sub></span>
+            <span id="acceleration" class="metric__value">0.00 m/s²</span>
+          </div>
+        </section>
+
+        <section class="hud__panel hud__time">
+          <h2>Écoulement du temps</h2>
+          <input type="range" id="time-warp" min="0" max="3" step="1" value="0" />
+          <div class="time-labels">
+            <span>x1</span><span>x2</span><span>x5</span><span>x10</span>
+          </div>
+          <p class="muted">Facteur : <strong id="time-factor">×1</strong></p>
+        </section>
+
+        <section class="hud__panel hud__burner">
+          <button type="button" id="burner-btn" class="btn btn--burner">
+            Brûleur <kbd>Espace</kbd>
+          </button>
+          <span id="burner-state" class="burner-state">OFF</span>
+        </section>
+
+        <section class="hud__panel hud__autopilot">
+          <h2>Autopilote</h2>
+          <label class="field">
+            Altitude cible (m)
+            <input type="number" id="target-altitude" value="300" min="0" max="5000" step="10" />
+          </label>
+          <button type="button" id="autopilot-toggle" class="btn btn--toggle">
+            Activer autopilote
+          </button>
+          <p id="autopilot-phase" class="ia-phase ia-phase--idle">—</p>
+          <p id="autopilot-status" class="muted">IA inactive</p>
+        </section>
+
+        <footer class="hud__hint muted">
+          Orbit : clic gauche · Zoom : molette · Pan : clic droit
+        </footer>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
