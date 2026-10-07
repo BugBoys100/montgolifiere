@@ -1,7 +1,7 @@
 # Montgolfière — Simulation physique 3D
 
 Simulation interactive de montgolfière (Three.js + moteur thermo-mécanique) avec HUD, time-warp et autopilote PID.
-
+![Aperçu du simulateur](img/img1.png)
 ## Lancer
 
 ```bash
